@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="description" content="Credit card form - TheWhyKingz test assignment">
+	<meta name="author" content="Mykhailo Barsukov">
+	<title>Credit Card</title>
+	<link rel="stylesheet" href="assets/css/main.css">
+</head>
+<body>
+	<div class="container">
+		<div class="card-form">
+			<div class="credit-card">
+				<div class="credit-card__header"></div>
+				<div class="credit-card__number">XXXX XXXX XXXX XXXX</div>
+				<div class="credit-card__footer">
+					<div class="credit-card__holder-wr">
+						<div class="credit-card__holder">Card holder</div>
+						<div class="credit-card__name">Full name</div>
+					</div>
+					<div class="credit-card__expires-wr">
+						<div class="credit-card__expires">Expires</div>
+						<span class="credit-card__month">MM</span>
+						<span>/</span>
+						<span class="credit-card__year">YY</span>
+					</div>
+				</div>
+			</div>
+			<form class="card-form__wr">
+				<div class="form-group">
+					<label for="card-number" class="form-label">Card number</label>
+					<input class="form-input" type="text" name="card_number" id="card-number" maxlength="19" placeholder="4444 4444 4444 4444" required="required">
+				</div>
+				<div class="form-group">
+					<label for="card-holder" class="form-label">Card holder</label>
+					<input class="form-input" type="text" name="card_number" id="card-holder" maxlength="22" placeholder="FULL NAME" required="required">
+				</div>
+				<div class="form-row">
+					<div class="form-group">
+						<label for="card-month" class="form-label">Expiration MM</label>
+						<select class="form-input" name="card_month" id="card-month" required="required">
+							<option value="" selected disabled>Month</option>
+							<option value="01">01</option>
+							<option value="02">02</option>
+							<option value="03">03</option>
+							<option value="04">04</option>
+							<option value="05">05</option>
+							<option value="06">06</option>
+							<option value="07">07</option>
+							<option value="08">08</option>
+							<option value="09">09</option>
+							<option value="10">10</option>
+							<option value="11">11</option>
+							<option value="11">12</option>
+						</select>
+					</div>
+					<div class="form-group">
+						<label for="card-year" class="form-label">Expiration YY</label>
+						<select class="form-input" name="card_year" id="card-year" required="required">
+							<option value="" selected disabled>Year</option>
+						</select>
+					</div>
+					<div class="form-group">
+						<label for="card-cvv" class="form-label">CVV</label>
+						<input class="form-input" type="text" name="card_cvv" id="card-cvv" placeholder="&#8226;&#8226;&#8226;">
+					</div>
+				</div>
+				<button class="btn card-form__submit" type="submit">Submit</button>
+			</form>
+		</div>
+	</div>
+
+	<script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+	<script src="assets/js/main.js"></script>
+</body>
+</html>

@@ -1,0 +1,19 @@
+{
+  "name": "thewhykingz-test-credit-card",
+  "version": "1.0.0",
+  "description": "Credit card form - TheWhyKingz test assignment",
+  "scripts": {
+    "dev": "node-sass -w -o assets/css assets/sass/main.scss",
+    "build": "node-sass --output-style compressed -o assets/css assets/sass/main.scss && npm run prefix",
+    "prefix": "postcss --use autoprefixer -r --no-map assets/css assets/css"
+  },
+  "keywords": [],
+  "author": "Mykhailo Barsukov",
+  "license": "ISC",
+  "devDependencies": {
+    "autoprefixer": "^10.4.16",
+    "node-sass": "^9.0.0",
+    "postcss": "^8.4.32",
+    "postcss-cli": "^11.0.0"
+  }
+}
