@@ -17,18 +17,37 @@
 		return isValid;
 	}
 
-	const appendExpirationYears = () => {
-		const cardYear = $('#card-year');
+	const updateExpirationMonths = () => {
+		const currentYear = new Date().getFullYear() % 100;
+		const selectedYear = parseInt(cardYearInput.val(), 10);
+		const currentMonth = new Date().getMonth() + 1;
+
+		cardMonthInput.empty();
+		cardMonthInput.append('<option value="" selected disabled>Month</option>');
+
+		for (let i = 1; i <= 12; i++) {
+			if (!(selectedYear === currentYear && i < currentMonth)) {
+				cardMonthInput.append(`<option value="${i < 10 ? '0' + i : i}">${i < 10 ? '0' + i : i}</option>`);
+			}
+		}
+	};
+
+	const updateExpirationYears = () => {
 		const currentYear = new Date().getFullYear() % 100;
 
+		cardYearInput.empty();
+		cardYearInput.append('<option value="" selected disabled>Year</option>');
+
 		for (let i = 0; i <= 10; i++) {
-			cardYear.append(`<option value="${currentYear + i}">${currentYear + i}</option>`)
+			cardYearInput.append(`<option value="${currentYear + i}">${currentYear + i}</option>`);
 		}
+
+		updateExpirationMonths();
 	}
 
 	const setCardData = () => {
-		cardNumber.text(validateCardNumber(cardNumberInput.val()) ? cardNumberInput.val() : 'XXXX XXXX XXXX XXXX');
-		cardHolder.text(validateCardHolder(cardHolderInput.val()) ? cardHolderInput.val().trim() : 'Full name');
+		cardNumber.text(cardNumberInput.val().length ? cardNumberInput.val() : 'XXXX XXXX XXXX XXXX');
+		cardHolder.text(cardHolderInput.val().length ? cardHolderInput.val().trim() : 'Full name');
 
 		if (validateExpirationDate(parseInt(cardMonthInput.val(), 10), parseInt(cardYearInput.val(), 10))) {
 			cardMonth.text(cardMonthInput.val() || 'MM');
@@ -73,12 +92,11 @@
 	const cardYear = $('.credit-card__year');
 	const cardYearInput = $('#card-year');
 	const cardCvvInput = $('#card-cvv');
-	const submitBtn = $('.card-form__submit');
 
 	$(document).ready(function() {
-		appendExpirationYears();
+		updateExpirationYears();
 
-		cardForm.on('change', setCardData);
+		cardForm.on('input', setCardData);
 
 		cardForm.on('submit', parseFormData);
 
@@ -95,10 +113,7 @@
 			validateInput($(this), validateCardHolder);
 		});
 
-		cardMonthInput.add(cardYearInput).on('change', function() {
-			validateInput(cardMonthInput, () => validateExpirationDate(parseInt(cardMonthInput.val(), 10), parseInt(cardYearInput.val(), 10)));
-			validateInput(cardYearInput, () => validateExpirationDate(parseInt(cardMonthInput.val(), 10), parseInt(cardYearInput.val(), 10)));
-		});
+		cardYearInput.on('change', updateExpirationMonths);
 
 		cardCvvInput.on('input', function() {
 			this.value = this.value.replace(/\D/g, '').substring(0, 3);
